@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDG ITER | Tactical Developer Protocol</title>
+    <meta name="description" content="Official Google Developer Groups chapter at ITER (Siksha 'O' Anusandhan), Bhubaneswar. Tactical developer collective, Radianite technology labs, and community missions.">
+    <meta name="theme-color" content="#ff4655">
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GDG ITER | Tactical Developer Protocol">
+    <meta property="og:description" content="Connect. Learn. Scale. Defy the limits with the flagship developer collective at SOA ITER Bhubaneswar.">
+
+    <!-- Tailwind CSS & Iconify -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Project Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-[#0f1923] text-[#ece8e1] antialiased selection:bg-[#ff4655] selection:text-white relative">
+    <!-- Top Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- Ambient Cursor Follower Glow -->
+    <div id="ambient-glow" aria-hidden="true"></div>
+
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="sticky top-0 z-50 h-16 sm:h-20 bg-[#0f1923]/90 backdrop-blur-xl border-b border-[#ff4655]/20 px-6 lg:px-12 flex items-center justify-between transition-all duration-300">
+            <div class="flex items-center gap-6 lg:gap-8">
+                <a href="#hero" id="nav-logo-link" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[#ff4655] rounded-xl p-1" aria-label="GDG ITER Home">
+                    <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/f7f474c0-d292-49e8-a5de-bee25424b883/1791728304461-eb9daa2e/gdg_skncoe5_AvIfr71.webp" alt="GDG ITER Logo" class="h-8 sm:h-9 w-auto group-hover:rotate-12 transition-transform duration-500">
+                    <div class="flex items-center gap-2">
+                        <span class="font-clash text-xl sm:text-2xl text-[#ece8e1] tracking-tight">GDG <span class="font-medium text-[#ff4655]">ITER</span></span>
+                        <span class="hidden sm:inline-block font-tactical text-[9px] text-[#ff4655] px-1.5 py-0.5 bg-[#ff4655]/10 border border-[#ff4655]/30">V.26</span>
+                    </div>
+                </a>
+                <div class="hidden xl:flex items-center gap-4">
+                    <div class="h-6 w-[0.5px] bg-[#233142]"></div>
+                    <div class="flex items-center gap-2.5 px-3 py-1 bg-[#16212e] border border-[#233142] rounded-none cursor-default font-tactical">
+                        <span class="text-[9px] font-bold uppercase text-[#8b978f] tracking-[0.2em]">BBSR // LAT: 20.29°N</span>
+                        <span class="flex items-center gap-1.5 text-[9px] font-bold text-[#00f5d4] uppercase bg-[#00f5d4]/10 px-2 py-0.5 border border-[#00f5d4]/20">
+                            <span class="w-1.5 h-1.5 bg-[#00f5d4] rounded-full animate-ping"></span>
+                            RADIANITE LIVE
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-7 xl:gap-8 font-valorant" aria-label="Main Navigation">
+                <a href="#hero" id="nav-link-home" class="nav-underline text-[11px] font-bold uppercase tracking-[0.2em] text-[#ff4655]">Home</a>
+                <a href="#recruitment" id="nav-link-apply" class="nav-underline text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655]">Protocols</a>
+                <a href="#meets" id="nav-link-meets" class="nav-underline text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655]">Briefings</a>
+                <a href="#gallery" id="nav-link-moments" class="nav-underline text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655]">Archive</a>
+                <a href="#achievements" id="nav-link-growth" class="nav-underline text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655]">Timeline</a>
+                <a href="#members" id="nav-link-leads" class="nav-underline text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655]">Agents</a>
+                
+                <button type="button" data-open-modal="join-modal" id="nav-cta-join" class="val-btn-polygon magnetic-btn ml-3 bg-[#ff4655] hover:bg-[#fa4454] text-white px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] shadow-lg shadow-red-500/25 active:scale-95 transition-all cursor-pointer">
+                    Deploy Squad
+                </button>
+            </nav>
+
+            <button id="mobile-menu-btn" aria-label="Open mobile navigation menu" class="lg:hidden text-[#ece8e1] p-2 hover:bg-[#16212e] transition-colors focus:outline-none focus:ring-2 focus:ring-[#ff4655]">
+                <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+            </button>
+        </header>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-drawer-backdrop" class="fixed inset-0 z-50 bg-[#080c10]/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300"></div>
+        <div id="mobile-drawer" class="mobile-drawer fixed top-0 right-0 z-50 h-full w-80 max-w-[85vw] bg-[#0f1923] shadow-2xl p-6 sm:p-8 flex flex-col justify-between border-l border-[#ff4655]/30">
+            <div>
+                <div class="flex items-center justify-between pb-5 border-b border-[#233142]">
+                    <div class="flex items-center gap-2">
+                        <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/f7f474c0-d292-49e8-a5de-bee25424b883/1791728304461-eb9daa2e/gdg_skncoe5_AvIfr71.webp" alt="GDG Logo" class="h-7 w-auto">
+                        <span class="font-clash text-lg text-[#ece8e1]">GDG <span class="text-[#ff4655]">ITER</span></span>
+                    </div>
+                    <button id="mobile-menu-close" aria-label="Close menu" class="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-[#16212e] transition-colors">
+                        <iconify-icon icon="lucide:x" class="text-2xl"></iconify-icon>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-5 pt-6 font-valorant" aria-label="Mobile Navigation">
+                    <a href="#hero" class="text-xs font-bold uppercase tracking-[0.2em] text-[#ff4655] hover:text-white transition-colors">01 // Home</a>
+                    <a href="#recruitment" class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655] transition-colors">02 // Protocols</a>
+                    <a href="#meets" class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655] transition-colors">03 // Briefings</a>
+                    <a href="#gallery" class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655] transition-colors">04 // Archive</a>
+                    <a href="#achievements" class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655] transition-colors">05 // Timeline</a>
+                    <a href="#members" class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#ff4655] transition-colors">06 // Agent Roster</a>
+                </nav>
+            </div>
+            <div class="space-y-3 pt-5 border-t border-[#233142]">
+                <button type="button" data-open-modal="join-modal" class="val-btn-polygon w-full py-3.5 bg-[#ff4655] text-white text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#fa4454] transition-colors shadow-lg shadow-red-500/30">
+                    Deploy Squad Now
+                </button>
+                <p class="font-tactical text-[10px] text-[#8b978f] text-center">SOA UNIVERSITY • PROTOCOL ACTIVE</p>
+            </div>
+        </div>
+
+        <main class="flex-1">
+            <!-- Hero Section (Valorant Tactical Style) -->
+            <section id="hero" class="relative pt-10 md:pt-16 pb-14 md:pb-20 px-6 sm:px-8 lg:px-12 flex flex-col items-center text-center overflow-hidden bg-[#0f1923] tactical-grid-bg">
+                <canvas id="hero-particles" class="absolute inset-0 pointer-events-none z-0"></canvas>
+                
+                <!-- Watermark Background -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none font-clash text-[18vw] font-black text-white whitespace-nowrap overflow-hidden z-0">
+                    DEFY THE LIMITS
+                </div>
+
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-40">
+                    <div class="parallax-blob absolute top-10 left-1/4 w-[320px] md:w-[420px] h-[320px] md:h-[420px] bg-[#00f5d4]/15 rounded-full blur-[100px] animate-float" style="animation-delay: -2s;" data-parallax-speed="0.04"></div>
+                    <div class="parallax-blob absolute bottom-10 right-1/4 w-[300px] md:w-[380px] h-[300px] md:h-[380px] bg-[#ff4655]/20 rounded-full blur-[100px] animate-float" data-parallax-speed="-0.05"></div>
+                </div>
+
+                <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center w-full">
+                    <!-- Floating Tactical Chips -->
+                    <div class="floating-chip absolute -top-2 left-0 lg:left-6 hidden sm:flex items-center gap-2.5 px-3.5 py-1.5 bg-[#16212e]/90 border border-[#00f5d4]/40 text-[11px] font-bold text-[#ece8e1] font-valorant animate-float-slow cursor-default">
+                        <span class="w-1.5 h-1.5 bg-[#00f5d4] rounded-full animate-ping"></span>
+                        <iconify-icon icon="logos:react" class="text-sm"></iconify-icon>
+                        <span>RADIANT // REACT 19</span>
+                    </div>
+                    <div class="floating-chip absolute top-0 right-0 lg:right-6 hidden sm:flex items-center gap-2.5 px-3.5 py-1.5 bg-[#16212e]/90 border border-[#ff4655]/40 text-[11px] font-bold text-[#ece8e1] font-valorant animate-float-reverse cursor-default">
+                        <span class="w-1.5 h-1.5 bg-[#ff4655] rounded-full"></span>
+                        <iconify-icon icon="logos:google-cloud" class="text-sm"></iconify-icon>
+                        <span>DEPLOY // CLOUD RUN</span>
+                    </div>
+                    <div class="floating-chip absolute bottom-32 left-2 lg:left-10 hidden md:flex items-center gap-2.5 px-3.5 py-1.5 bg-[#16212e]/90 border border-[#00f5d4]/40 text-[11px] font-bold text-[#ece8e1] font-valorant animate-float cursor-default">
+                        <span class="w-1.5 h-1.5 bg-[#00f5d4] rounded-full"></span>
+                        <iconify-icon icon="logos:flutter" class="text-sm"></iconify-icon>
+                        <span>ENGINE // FLUTTER 3.X</span>
+                    </div>
+                    <div class="floating-chip absolute bottom-28 right-2 lg:right-10 hidden md:flex items-center gap-2.5 px-3.5 py-1.5 bg-[#16212e]/90 border border-[#ffc83b]/40 text-[11px] font-bold text-[#ece8e1] font-valorant animate-float-slow cursor-default">
+                        <span class="w-1.5 h-1.5 bg-[#ffc83b] rounded-full"></span>
+                        <iconify-icon icon="fluent-emoji:sparkles" class="text-sm"></iconify-icon>
+                        <span>AI // RADIANITE GEMINI</span>
+                    </div>
+
+                    <div class="reveal-hidden space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#16212e] border border-[#ff4655]/40 text-[#ff4655] font-tactical text-[9px] uppercase tracking-[0.3em]">
+                            <span class="w-1.5 h-1.5 bg-[#ff4655] rounded-full animate-ping"></span>
+                            GDG ON CAMPUS • VALORANT OPERATOR PROTOCOL
+                        </div>
+                        <h1 class="font-clash hero-text text-[#ece8e1]">
+                            <span class="inline-block overflow-hidden"><span class="block val-glitch">CONNECT.</span></span>
+                            <span class="inline-block overflow-hidden"><span class="block text-gradient-animated val-glitch">LEARN.</span></span>
+                            <span class="inline-block overflow-hidden"><span class="block val-glitch">SCALE.</span></span>
+                        </h1>
+                    </div>
+                    
+                    <p class="reveal-hidden text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium mt-4 md:mt-5 px-4 font-valorant" data-delay="250">
+                        Elite developer syndicate at ITER SOA. Engineering high-tier web, cloud, and AI architectures. <span class="text-[#00f5d4] font-bold">Defy the limits.</span>
+                    </p>
+
+                    <div class="reveal-hidden flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 pt-6 md:pt-8" data-delay="400">
+                        <button type="button" data-open-modal="join-modal" id="hero-cta-join" class="val-btn-polygon btn-shine-sweep magnetic-btn group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-[#ff4655] hover:bg-[#fa4454] text-white text-[11px] font-bold uppercase tracking-[0.25em] transition-all cursor-pointer shadow-lg shadow-red-500/30 active:scale-95">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <iconify-icon icon="lucide:crosshair" class="text-base"></iconify-icon>
+                                Deploy to Squad
+                            </span>
+                        </button>
+                        <a href="#meets" id="hero-cta-meets" class="val-btn-polygon btn-shine-sweep magnetic-btn px-8 sm:px-10 py-3.5 sm:py-4 bg-[#16212e] border border-[#ff4655]/40 text-[#ece8e1] text-[11px] font-bold uppercase tracking-[0.25em] hover:bg-[#ff4655] hover:text-white transition-all active:scale-95">
+                            Access Briefings
+                        </a>
+                    </div>
+
+                    <!-- Stats Counter Grid (Tactical Valorant Pods) -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-10 md:pt-14 max-w-4xl mx-auto w-full font-valorant">
+                        <div class="reveal-hidden p-4 sm:p-5 bg-[#16212e]/80 border border-[#233142] hover:border-[#ff4655]/50 transition-colors text-center space-y-1" data-delay="100">
+                            <span class="block font-clash text-4xl lg:text-5xl text-[#ff4655] tracking-tight counter" data-target="5.2" data-suffix="K+">0</span>
+                            <span class="text-[10px] font-bold uppercase text-slate-400 tracking-[0.2em]">Combatants</span>
+                        </div>
+                        <div class="reveal-hidden p-4 sm:p-5 bg-[#16212e]/80 border border-[#233142] hover:border-[#00f5d4]/50 transition-colors text-center space-y-1" data-delay="150">
+                            <span class="block font-clash text-4xl lg:text-5xl text-[#00f5d4] tracking-tight counter" data-target="60" data-suffix="+">0</span>
+                            <span class="text-[10px] font-bold uppercase text-slate-400 tracking-[0.2em]">Squad Agents</span>
+                        </div>
+                        <div class="reveal-hidden p-4 sm:p-5 bg-[#16212e]/80 border border-[#233142] hover:border-[#ffc83b]/50 transition-colors text-center space-y-1" data-delay="200">
+                            <span class="block font-clash text-4xl lg:text-5xl text-[#ffc83b] tracking-tight counter" data-target="100" data-suffix="%">0</span>
+                            <span class="text-[10px] font-bold uppercase text-slate-400 tracking-[0.2em]">Radianite Load</span>
+                        </div>
+                        <div class="reveal-hidden p-4 sm:p-5 bg-[#16212e]/80 border border-[#233142] hover:border-[#ff4655]/50 transition-colors text-center space-y-1" data-delay="250">
+                            <span class="block font-clash text-4xl lg:text-5xl text-[#ece8e1] tracking-tight counter" data-target="30" data-suffix="+">0</span>
+                            <span class="text-[10px] font-bold uppercase text-slate-400 tracking-[0.2em]">Annual Missions</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Infinite Animated Tactical Marquee -->
+            <section class="py-3 bg-[#0b1218] border-y border-[#ff4655]/30 overflow-hidden text-[#ece8e1] select-none font-tactical">
+                <div class="marquee-container">
+                    <div class="marquee-track flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.25em]">
+                        <span class="flex items-center gap-2 text-[#ff4655]"><span class="w-1.5 h-1.5 bg-[#ff4655] rounded-full animate-ping"></span> // VALORANT PROTOCOL</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2 text-[#00f5d4]"><span class="w-1.5 h-1.5 bg-[#00f5d4] rounded-full"></span> DEFY THE LIMITS</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#ffc83b] rounded-full"></span> RADIANITE AI &amp; ML LABS</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#ff4655] rounded-full"></span> CLOUD COMBAT INFRASTRUCTURE</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2 text-[#00f5d4]"><span class="w-1.5 h-1.5 bg-[#00f5d4] rounded-full"></span> OPERATOR RECRUITMENT LIVE</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#ece8e1] rounded-full"></span> WINTER HACKATHON ARENA</span>
+                        <span class="text-[#233142]">///</span>
+                        <!-- Loop repeat -->
+                        <span class="flex items-center gap-2 text-[#ff4655]"><span class="w-1.5 h-1.5 bg-[#ff4655] rounded-full animate-ping"></span> // VALORANT PROTOCOL</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2 text-[#00f5d4]"><span class="w-1.5 h-1.5 bg-[#00f5d4] rounded-full"></span> DEFY THE LIMITS</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#ffc83b] rounded-full"></span> RADIANITE AI &amp; ML LABS</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#ff4655] rounded-full"></span> CLOUD COMBAT INFRASTRUCTURE</span>
+                        <span class="text-[#233142]">///</span>
+                        <span class="flex items-center gap-2 text-[#00f5d4]"><span class="w-1.5 h-1.5 bg-[#00f5d4] rounded-full"></span> OPERATOR RECRUITMENT LIVE</span>
+                        <span class="text-[#233142]">///</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recruitment Section (Valorant Operator Drive) -->
+            <section id="recruitment" class="px-6 sm:px-8 lg:px-12 py-14 md:py-20 bg-[#0b1218] border-y border-[#ff4655]/20 overflow-hidden relative">
+                <div class="max-w-6xl mx-auto space-y-10 md:space-y-12">
+                    <div class="reveal-hidden flex flex-col md:flex-row items-start md:items-end justify-between gap-4 md:gap-6">
+                        <div class="max-w-xl">
+                            <span class="text-[10px] font-bold uppercase tracking-[0.35em] text-[#ff4655] mb-2 block font-tactical">// ACTIVE PROTOCOLS</span>
+                            <h2 class="font-clash text-3xl sm:text-4xl lg:text-5xl text-[#ece8e1]">OPERATOR SELECTION</h2>
+                        </div>
+                        <p class="text-slate-400 max-w-sm text-sm sm:text-base font-valorant font-medium">Join our tactical core roster or deploy in seasonal arena hackathons. Defy the limits.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        <!-- Core Team Recruitment Card -->
+                        <div class="reveal-hidden val-card spotlight-card interactive-tilt p-6 sm:p-8 hover-lift group relative overflow-hidden" data-delay="100">
+                            <div class="relative z-10 space-y-6">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00f5d4] px-3.5 py-1 bg-[#00f5d4]/10 border border-[#00f5d4]/30 font-tactical">STATUS: RECRUITING</span>
+                                    <iconify-icon icon="lucide:user-plus" class="text-2xl text-slate-400 group-hover:text-[#ff4655] group-hover:scale-110 transition-all duration-300"></iconify-icon>
+                                </div>
+                                <div class="space-y-2.5">
+                                    <h3 class="font-clash text-2xl sm:text-3xl text-[#ece8e1]">CORE TEAM<br>OPERATOR DRIVE '26</h3>
+                                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed font-valorant">Seeking high-caliber developers, designers, and managers across Web, Cloud, Radianite AI, and UX domains.</p>
+                                </div>
+                                <button type="button" data-open-modal="apply-modal" id="recruitment-apply-btn" class="val-btn-polygon btn-shine-sweep magnetic-btn inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#ff4655] hover:bg-[#fa4454] text-white text-[11px] font-bold uppercase tracking-[0.2em] transition-all cursor-pointer shadow-lg shadow-red-500/25">
+                                    Apply As Operator <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Winter Hackathon Card -->
+                        <div class="reveal-hidden val-card spotlight-card interactive-tilt bg-[#121c27] p-6 sm:p-8 hover-lift group relative overflow-hidden border border-[#ff4655]/40 shadow-xl" data-delay="150">
+                            <div class="absolute -top-10 -right-10 w-36 h-36 bg-[#ff4655]/15 rounded-full animate-pulse"></div>
+                            <div class="relative z-10 space-y-6">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-[#ff4655] px-3.5 py-1 bg-[#ff4655]/10 border border-[#ff4655]/30 font-tactical">RADIANITE ARENA OPEN</span>
+                                    <iconify-icon icon="lucide:zap" class="text-2xl text-[#ff4655] animate-bounce"></iconify-icon>
+                                </div>
+                                <div class="space-y-2.5">
+                                    <h3 class="font-clash text-2xl sm:text-3xl text-white">WINTER ARENA<br>HACKATHON 2026</h3>
+                                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed font-valorant">The flagship state tournament. Form a squad of 2-4 agents and solve high-stakes engineering problems.</p>
+                                </div>
+                                <button type="button" data-open-modal="hackathon-modal" id="hackathon-register-btn" class="val-btn-polygon btn-shine-sweep magnetic-btn inline-flex items-center gap-2.5 px-6 py-3.5 bg-white text-[#0f1923] hover:bg-[#ff4655] hover:text-white text-[11px] font-bold uppercase tracking-[0.2em] transition-all cursor-pointer shadow-lg shadow-white/10">
+                                    Register Squad <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Meets Section (Tactical Briefings) -->
+            <section id="meets" class="px-6 sm:px-8 lg:px-12 py-14 md:py-20 bg-[#0f1923] tactical-grid-bg">
+                <div class="max-w-6xl mx-auto space-y-10 md:space-y-12">
+                    <div class="reveal-hidden text-center space-y-3 max-w-xl mx-auto">
+                        <span class="text-[10px] font-bold uppercase tracking-[0.35em] text-[#00f5d4] font-tactical">// INTEL TRANSMISSIONS</span>
+                        <h2 class="font-clash text-3xl sm:text-4xl lg:text-5xl text-[#ece8e1]">MISSION BRIEFINGS</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 font-valorant">
+                        <!-- Meet 1 -->
+                        <div class="reveal-hidden val-card spotlight-card interactive-tilt group p-6 sm:p-7 hover-lift flex flex-col justify-between" data-delay="100">
+                           <div class="space-y-6">
+                                <div class="w-12 h-12 bg-[#121c27] rounded-none flex items-center justify-center border border-[#00f5d4]/40 shadow-xs group-hover:rotate-12 transition-transform duration-300">
+                                    <iconify-icon icon="logos:react" class="text-2xl grayscale group-hover:grayscale-0 transition-opacity"></iconify-icon>
+                                </div>
+                                <h3 class="font-clash text-2xl text-[#ece8e1]">REACT 19<br>DEEP PROTOCOL</h3>
+                                <div class="space-y-2 font-tactical text-[10px]">
+                                    <div class="flex items-center gap-2 font-bold text-slate-400 uppercase tracking-wider">
+                                        <iconify-icon icon="lucide:calendar-days" class="text-[#00f5d4] text-sm"></iconify-icon> OCT 15 // 17:00 HRS
+                                    </div>
+                                    <div class="flex items-center gap-2 font-bold text-slate-400 uppercase tracking-wider">
+                                        <iconify-icon icon="lucide:map-pin" class="text-slate-500 text-sm"></iconify-icon> VIRTUAL GRID 01
+                                    </div>
+                                </div>
+                           </div>
+                           <button type="button" data-open-modal="rsvp-modal" data-event-title="React 19 Deep Dive" id="rsvp-react-link" class="val-btn-polygon btn-shine-sweep magnetic-btn mt-6 py-3 bg-[#16212e] border border-[#ff4655]/40 hover:bg-[#ff4655] hover:text-white text-[11px] font-bold uppercase tracking-[0.2em] text-[#ece8e1] text-center transition-all cursor-pointer">
+                               RSVP Pass
+                           </button>
+                        </div>
+
+                        <!-- Meet 2 -->
+                        <div class="reveal-hidden val-card spotlight-card interactive-tilt group p-6 sm:p-7 hover-lift flex flex-col justify-between" data-delay="150">
+                            <div class="space-y-6">
+                                 <div class="w-12 h-12 bg-[#121c27] rounded-none flex items-center justify-center border border-[#ffc83b]/40 shadow-xs group-hover:-rotate-12 transition-transform duration-300 text-[#ffc83b]">
+                                     <iconify-icon icon="fluent:brain-circuit-24-filled" class="text-2xl"></iconify-icon>
+                                 </div>
+                                 <h3 class="font-clash text-2xl text-[#ece8e1]">RADIANITE AI<br>LAB DAY</h3>
+                                 <div class="space-y-2 font-tactical text-[10px]">
+                                     <div class="flex items-center gap-2 font-bold text-slate-400 uppercase tracking-wider">
+                                         <iconify-icon icon="lucide:calendar-days" class="text-[#ffc83b] text-sm"></iconify-icon> OCT 22 // 10:00 HRS
+                                     </div>
+                                     <div class="flex items-center gap-2 font-bold text-slate-400 uppercase tracking-wider">
+                                         <iconify-icon icon="lucide:map-pin" class="text-slate-500 text-sm"></iconify-icon> MAIN LAB SECTOR
+                                     </div>
+                                 </div>
+                            </div>
+                            <button type="button" data-open-modal="rsvp-modal" data-event-title="AI/ML Lab Day" id="rsvp-ai-link" class="val-btn-polygon btn-shine-sweep magnetic-btn mt-6 py-3 bg-[#16212e] border border-[#ff4655]/40 hover:bg-[#ff4655] hover:text-white text-[11px] font-bold uppercase tracking-[0.2em] text-[#ece8e1] text-center transition-all cursor-pointer">
+                                RSVP Pass
+                            </button>
+                         </div>
+
+                         <!-- Meet 3 -->
+                         <div class="reveal-hidden val-card spotlight-card interactive-tilt group p-6 sm:p-7 hover-lift flex flex-col justify-between" data-delay="200">
+                            <div class="space-y-6">
+                                 <div class="w-12 h-12 bg-[#121c27] rounded-none flex items-center justify-center border border-[#ff4655]/40 shadow-xs group-hover:scale-110 transition-transform duration-300 text-[#ff4655]">
+                                     <iconify-icon icon="mdi:cloud-check" class="text-2xl"></iconify-icon>
+                                 </div>
+                                 <h3 class="font-clash text-2xl text-[#ece8e1]">CLOUD COMBAT<br>ARCHITECTURE</h3>
+                                 <div class="space-y-2 font-tactical text-[10px]">
+                                     <div class="flex items-center gap-2 font-bold text-slate-400 uppercase tracking-wider">
+                                         <iconify-icon icon="lucide:calendar-days" class="text-[#ff4655] text-sm"></iconify-icon> NOV 05 // 16:00 HRS
+                                     </div>
+                                     <div class="flex items-center gap-2 font-bold text-slate-400 uppercase tracking-wider">
+                                         <iconify-icon icon="lucide:map-pin" class="text-slate-500 text-sm"></iconify-icon> AUDITORIUM C-BLOCK
+                                     </div>
+                                 </div>
+                            </div>
+                            <button type="button" data-open-modal="rsvp-modal" data-event-title="Cloud Scaling Architecture" id="rsvp-cloud-link" class="val-btn-polygon btn-shine-sweep magnetic-btn mt-6 py-3 bg-[#16212e] border border-[#ff4655]/40 hover:bg-[#ff4655] hover:text-white text-[11px] font-bold uppercase tracking-[0.2em] text-[#ece8e1] text-center transition-all cursor-pointer">
+                                RSVP Pass
+                            </button>
+                         </div>
+                    </div>
+                </div>
+            <!-- Gallery Section (Classified Visual Archive) -->
+            <section id="gallery" class="px-6 sm:px-8 lg:px-12 py-14 md:py-20 bg-[#0b1218] border-y border-[#ff4655]/20 overflow-hidden font-valorant">
+                <div class="max-w-6xl mx-auto space-y-8 md:space-y-10">
+                    <div class="reveal-hidden flex flex-col md:flex-row items-start md:items-end justify-between gap-4 md:gap-6">
+                        <div class="max-w-xl space-y-2">
+                            <span class="text-[10px] font-bold uppercase tracking-[0.35em] text-[#ff4655] font-tactical">// CLASSIFIED ARCHIVE</span>
+                            <h2 class="font-clash text-3xl sm:text-4xl lg:text-5xl text-[#ece8e1]">VISUAL INTEL</h2>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button id="gallery-prev-btn" aria-label="Previous image" class="val-btn-polygon w-10 sm:w-12 h-10 sm:h-12 bg-[#16212e] border border-[#ff4655]/40 flex items-center justify-center hover:bg-[#ff4655] hover:text-white transition-all shadow-md cursor-pointer">
+                                <iconify-icon icon="lucide:arrow-left" class="text-lg text-[#ece8e1]"></iconify-icon>
+                            </button>
+                            <button id="gallery-next-btn" aria-label="Next image" class="val-btn-polygon w-10 sm:w-12 h-10 sm:h-12 bg-[#16212e] border border-[#ff4655]/40 flex items-center justify-center hover:bg-[#ff4655] hover:text-white transition-all shadow-md cursor-pointer">
+                                <iconify-icon icon="lucide:arrow-right" class="text-lg text-[#ece8e1]"></iconify-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                        <!-- Gallery Item 1 -->
+                        <div class="reveal-hidden val-card group relative h-[280px] sm:h-[320px] overflow-hidden shadow-xl" data-delay="100">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800" alt="Tech Conference 2024" loading="lazy" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                            <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/60 p-6 flex flex-col justify-end">
+                                <span class="text-[10px] font-bold uppercase text-[#00f5d4] tracking-[0.25em] mb-1 font-tactical">// OPERATION INTEL</span>
+                                <h3 class="font-clash text-2xl text-[#ece8e1]">TECH CONF '24</h3>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-3 py-1 bg-[#16212e]/90 backdrop-blur-md text-[10px] font-bold text-[#ff4655] border border-[#ff4655]/40 font-tactical">2024</span>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Item 2 -->
+                        <div class="reveal-hidden val-card group relative h-[280px] sm:h-[320px] overflow-hidden shadow-xl" data-delay="150">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800" alt="Robotics Lab Showcase" loading="lazy" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                            <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/60 p-6 flex flex-col justify-end">
+                                <span class="text-[10px] font-bold uppercase text-[#ffc83b] tracking-[0.25em] mb-1 font-tactical">// RADIANITE HARDWARE</span>
+                                <h3 class="font-clash text-2xl text-[#ece8e1]">ROBOTICS COMBAT LAB</h3>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-3 py-1 bg-[#16212e]/90 backdrop-blur-md text-[10px] font-bold text-[#ffc83b] border border-[#ffc83b]/40 font-tactical">2025</span>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Item 3 -->
+                        <div class="reveal-hidden val-card group relative h-[280px] sm:h-[320px] overflow-hidden shadow-xl" data-delay="200">
+                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800" alt="Neon Hackathon Day" loading="lazy" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                            <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/60 p-6 flex flex-col justify-end">
+                                <span class="text-[10px] font-bold uppercase text-[#ff4655] tracking-[0.25em] mb-1 font-tactical">// ARENA TOURNAMENT</span>
+                                <h3 class="font-clash text-2xl text-[#ece8e1]">NEON HACKATHON</h3>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-3 py-1 bg-[#16212e]/90 backdrop-blur-md text-[10px] font-bold text-[#ff4655] border border-[#ff4655]/40 font-tactical">2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline Section (Radianite Lifeline) -->
+            <section id="achievements" class="px-6 sm:px-8 lg:px-12 py-14 md:py-20 bg-[#0f1923] tactical-grid-bg overflow-hidden font-valorant">
+                <div class="max-w-5xl mx-auto space-y-12 md:space-y-16">
+                    <div class="reveal-hidden text-center space-y-3">
+                        <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#00f5d4] font-tactical">// OPERATIONAL LIFELINE</span>
+                        <h2 class="font-clash text-3xl sm:text-4xl lg:text-5xl text-[#ece8e1]">TIMELINE OF EXCELLENCE</h2>
+                    </div>
+
+                    <div class="relative">
+                        <!-- Timeline central line background & active overlay -->
+                        <div id="timeline-line-bg" class="absolute left-1/2 -translate-x-1/2 h-full w-[2px] bg-[#233142] z-0 hidden md:block"></div>
+                        <div id="timeline-line-active" class="absolute left-1/2 -translate-x-1/2 w-[3px] bg-[#ff4655] z-0 timeline-line-active hidden md:block" style="height: 0; box-shadow: 0 0 16px rgba(255, 70, 85, 0.8);"></div>
+                        
+                        <div class="space-y-12 md:space-y-16 relative z-10">
+                            <!-- Milestone 1 ('26) -->
+                            <div class="reveal-hidden flex items-center justify-between flex-col md:flex-row group w-full" data-delay="100">
+                                <div class="w-full md:w-5/12 text-center md:text-right md:pr-12 opacity-90 group-hover:opacity-100 transition-all duration-300">
+                                    <span class="font-clash text-5xl lg:text-7xl text-[#00f5d4] mb-2 block tracking-tight group-hover:scale-105 transition-transform duration-300">'26</span>
+                                    <h3 class="text-xl font-bold text-[#ece8e1] mb-1.5 uppercase tracking-wide">GLOBAL SCALING</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed font-sans">Redefining the tech hub experience for 5.2K members with international speakers &amp; engineering fellowships.</p>
+                                </div>
+                                <div class="timeline-node w-11 h-11 bg-[#121c27] border-2 border-slate-700 shadow-md flex items-center justify-center absolute left-1/2 -translate-x-1/2 hidden md:flex transition-all duration-300 relative">
+                                    <div class="radar-ring"></div>
+                                    <iconify-icon icon="lucide:globe" class="text-[#00f5d4] text-lg relative z-10"></iconify-icon>
+                                </div>
+                                <div class="hidden md:block w-5/12 ml-auto"></div>
+                            </div>
+
+                            <!-- Milestone 2 ('25) -->
+                            <div class="reveal-hidden flex items-center justify-between flex-col md:flex-row group w-full" data-delay="150">
+                                <div class="hidden md:block w-5/12"></div>
+                                <div class="timeline-node w-11 h-11 bg-[#121c27] border-2 border-slate-700 shadow-md flex items-center justify-center absolute left-1/2 -translate-x-1/2 hidden md:flex transition-all duration-300 relative">
+                                    <div class="radar-ring"></div>
+                                    <iconify-icon icon="lucide:award" class="text-[#ff4655] text-lg relative z-10"></iconify-icon>
+                                </div>
+                                <div class="w-full md:w-5/12 text-center md:text-left md:pl-12 opacity-90 group-hover:opacity-100 transition-all duration-300">
+                                    <span class="font-clash text-5xl lg:text-7xl text-[#ff4655] mb-2 block tracking-tight group-hover:scale-105 transition-transform duration-300">'25</span>
+                                    <h3 class="text-xl font-bold text-[#ece8e1] mb-1.5 uppercase tracking-wide">REGIONAL DOMINANCE</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed font-sans">Hosted the largest student hackathon in the state, bringing 800+ builders together across 30 hours of combat.</p>
+                                </div>
+                            </div>
+
+                            <!-- Milestone 3 ('24) -->
+                            <div class="reveal-hidden flex items-center justify-between flex-col md:flex-row group w-full" data-delay="200">
+                                <div class="w-full md:w-5/12 text-center md:text-right md:pr-12 opacity-90 group-hover:opacity-100 transition-all duration-300">
+                                    <span class="font-clash text-5xl lg:text-7xl text-[#ffc83b] mb-2 block tracking-tight group-hover:scale-105 transition-transform duration-300">'24</span>
+                                    <h3 class="text-xl font-bold text-[#ece8e1] mb-1.5 uppercase tracking-wide">CHAPTER GENESIS</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed font-sans">Officially chartered under Google Developer Groups on Campus with 15+ high-intensity bootcamps.</p>
+                                </div>
+                                <div class="timeline-node w-11 h-11 bg-[#121c27] border-2 border-slate-700 shadow-md flex items-center justify-center absolute left-1/2 -translate-x-1/2 hidden md:flex transition-all duration-300 relative">
+                                    <div class="radar-ring"></div>
+                                    <iconify-icon icon="lucide:sparkles" class="text-[#ffc83b] text-lg relative z-10"></iconify-icon>
+                                </div>
+                                <div class="hidden md:block w-5/12 ml-auto"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Section (Valorant Agent Roster) -->
+            <section id="members" class="px-6 sm:px-8 lg:px-12 py-14 md:py-20 bg-[#0b1218] border-y border-[#ff4655]/20 text-[#ece8e1]">
+                <div class="max-w-6xl mx-auto space-y-10 md:space-y-12">
+                    <div class="reveal-hidden flex flex-col md:flex-row items-start md:items-end justify-between gap-4 md:gap-6">
+                        <div class="max-w-xl">
+                            <span class="font-tactical text-[10px] font-bold uppercase tracking-[0.3em] text-[#ff4655] block mb-2">// ACTIVE ROSTER // SQUAD LEADERS</span>
+                            <h2 class="font-clash text-3xl sm:text-4xl lg:text-5xl text-white">AGENT <span class="text-[#ff4655]">OPERATORS.</span></h2>
+                        </div>
+                        <button type="button" data-open-modal="directory-modal" id="team-directory-btn" class="val-btn-polygon magnetic-btn px-6 sm:px-8 py-3 bg-[#ff4655] text-white text-[11px] font-bold uppercase tracking-[0.2em] font-tactical hover:bg-[#fa4454] transition-all cursor-pointer shadow-lg shadow-red-500/20">
+                            BROWSE FULL ROSTER
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Lead 1: Duelist -->
+                        <div class="reveal-hidden val-card interactive-tilt group bg-[#121c27] p-6 text-center border border-[#ff4655]/30 hover:border-[#ff4655] transition-all duration-300 shadow-xl relative overflow-hidden" data-delay="100">
+                            <div class="absolute top-3 left-3 text-[9px] font-tactical font-bold text-[#ff4655] tracking-widest">[ DUELIST ]</div>
+                            <div class="absolute top-3 right-3 text-[9px] font-tactical text-slate-500">SYS // 01</div>
+                            <div class="relative w-24 h-24 mx-auto mt-4 mb-4 overflow-hidden rounded-full border-2 border-[#ff4655]/40 group-hover:border-[#ff4655] group-hover:shadow-[0_0_15px_rgba(255,70,85,0.4)] transition-all">
+                                <div class="w-full h-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-500">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aarav" alt="Aarav Sharma" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <h3 class="font-clash text-xl text-white mb-0.5">Aarav Sharma</h3>
+                            <span class="font-tactical text-[10px] font-bold uppercase text-[#00f5d4] tracking-[0.2em] mb-2 block">FULL STACK LEAD</span>
+                            
+                            <!-- Energy / Sync bar -->
+                            <div class="w-full bg-[#1c2938] h-1.5 rounded-full overflow-hidden my-3">
+                                <div class="bg-gradient-to-r from-[#ff4655] to-[#00f5d4] h-full w-[94%]"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[9px] font-tactical text-slate-400 mb-3">
+                                <span>SYNC: 94%</span>
+                                <span>REACT / GO</span>
+                            </div>
+
+                            <div class="flex items-center justify-center gap-3 text-slate-400 text-sm">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Aarav GitHub"><iconify-icon icon="lucide:github"></iconify-icon></a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#00f5d4] transition-colors" aria-label="Aarav LinkedIn"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+                            </div>
+                        </div>
+
+                        <!-- Lead 2: Initiator -->
+                        <div class="reveal-hidden val-card interactive-tilt group bg-[#121c27] p-6 text-center border border-[#ff4655]/30 hover:border-[#ff4655] transition-all duration-300 shadow-xl relative overflow-hidden" data-delay="150">
+                            <div class="absolute top-3 left-3 text-[9px] font-tactical font-bold text-[#ffc83b] tracking-widest">[ INITIATOR ]</div>
+                            <div class="absolute top-3 right-3 text-[9px] font-tactical text-slate-500">SYS // 02</div>
+                            <div class="relative w-24 h-24 mx-auto mt-4 mb-4 overflow-hidden rounded-full border-2 border-[#ffc83b]/40 group-hover:border-[#ffc83b] group-hover:shadow-[0_0_15px_rgba(255,200,59,0.4)] transition-all">
+                                <div class="w-full h-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-500">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Arjun" alt="Arjun Reddy" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <h3 class="font-clash text-xl text-white mb-0.5">Arjun Reddy</h3>
+                            <span class="font-tactical text-[10px] font-bold uppercase text-[#ffc83b] tracking-[0.2em] mb-2 block">MEDIA &amp; PR LEAD</span>
+                            
+                            <!-- Energy / Sync bar -->
+                            <div class="w-full bg-[#1c2938] h-1.5 rounded-full overflow-hidden my-3">
+                                <div class="bg-gradient-to-r from-[#ffc83b] to-[#ff4655] h-full w-[88%]"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[9px] font-tactical text-slate-400 mb-3">
+                                <span>SYNC: 88%</span>
+                                <span>BROADCAST / 4K</span>
+                            </div>
+
+                            <div class="flex items-center justify-center gap-3 text-slate-400 text-sm">
+                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Arjun Twitter"><iconify-icon icon="lucide:twitter"></iconify-icon></a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#ffc83b] transition-colors" aria-label="Arjun LinkedIn"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+                            </div>
+                        </div>
+
+                        <!-- Lead 3: Sentinel -->
+                        <div class="reveal-hidden val-card interactive-tilt group bg-[#121c27] p-6 text-center border border-[#ff4655]/30 hover:border-[#ff4655] transition-all duration-300 shadow-xl relative overflow-hidden" data-delay="200">
+                            <div class="absolute top-3 left-3 text-[9px] font-tactical font-bold text-[#00f5d4] tracking-widest">[ SENTINEL ]</div>
+                            <div class="absolute top-3 right-3 text-[9px] font-tactical text-slate-500">SYS // 03</div>
+                            <div class="relative w-24 h-24 mx-auto mt-4 mb-4 overflow-hidden rounded-full border-2 border-[#00f5d4]/40 group-hover:border-[#00f5d4] group-hover:shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all">
+                                <div class="w-full h-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-500">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Tara" alt="Tara D'Souza" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <h3 class="font-clash text-xl text-white mb-0.5">Tara D'Souza</h3>
+                            <span class="font-tactical text-[10px] font-bold uppercase text-[#00f5d4] tracking-[0.2em] mb-2 block">UI/UX DESIGN LEAD</span>
+                            
+                            <!-- Energy / Sync bar -->
+                            <div class="w-full bg-[#1c2938] h-1.5 rounded-full overflow-hidden my-3">
+                                <div class="bg-gradient-to-r from-[#00f5d4] to-[#ff4655] h-full w-[96%]"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[9px] font-tactical text-slate-400 mb-3">
+                                <span>SYNC: 96%</span>
+                                <span>FIGMA / PROTOTYPE</span>
+                            </div>
+
+                            <div class="flex items-center justify-center gap-3 text-slate-400 text-sm">
+                                <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Tara Dribbble"><iconify-icon icon="lucide:dribbble"></iconify-icon></a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#00f5d4] transition-colors" aria-label="Tara LinkedIn"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+                            </div>
+                        </div>
+
+                        <!-- Lead 4: Controller -->
+                        <div class="reveal-hidden val-card interactive-tilt group bg-[#121c27] p-6 text-center border border-[#ff4655]/30 hover:border-[#ff4655] transition-all duration-300 shadow-xl relative overflow-hidden" data-delay="250">
+                            <div class="absolute top-3 left-3 text-[9px] font-tactical font-bold text-[#ff4655] tracking-widest">[ CONTROLLER ]</div>
+                            <div class="absolute top-3 right-3 text-[9px] font-tactical text-slate-500">SYS // 04</div>
+                            <div class="relative w-24 h-24 mx-auto mt-4 mb-4 overflow-hidden rounded-full border-2 border-[#ff4655]/40 group-hover:border-[#ff4655] group-hover:shadow-[0_0_15px_rgba(255,70,85,0.4)] transition-all">
+                                <div class="w-full h-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-500">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kunal" alt="Kunal Singhal" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <h3 class="font-clash text-xl text-white mb-0.5">Kunal Singhal</h3>
+                            <span class="font-tactical text-[10px] font-bold uppercase text-[#ff4655] tracking-[0.2em] mb-2 block">CHAPTER PRESIDENT</span>
+                            
+                            <!-- Energy / Sync bar -->
+                            <div class="w-full bg-[#1c2938] h-1.5 rounded-full overflow-hidden my-3">
+                                <div class="bg-gradient-to-r from-[#ff4655] to-[#ffc83b] h-full w-[99%]"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[9px] font-tactical text-slate-400 mb-3">
+                                <span>SYNC: 99%</span>
+                                <span>COMMAND / OPS</span>
+                            </div>
+
+                            <div class="flex items-center justify-center gap-3 text-slate-400 text-sm">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Kunal GitHub"><iconify-icon icon="lucide:github"></iconify-icon></a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#ff4655] transition-colors" aria-label="Kunal LinkedIn"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final Tactical CTA Section -->
+            <section id="join" class="px-6 sm:px-8 lg:px-12 py-16 sm:py-24 bg-[#0f1923] text-white relative overflow-hidden tactical-grid-bg border-t border-[#ff4655]/30">
+                <!-- Watermark Background -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.025] select-none font-clash text-[16vw] font-black text-white whitespace-nowrap overflow-hidden z-0">
+                    RADIANT PROTOCOL
+                </div>
+                
+                <div class="reveal-hidden relative z-10 max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#16212e] border border-[#ff4655]/40 text-[#ff4655] font-tactical text-[10px] uppercase tracking-[0.3em]">
+                        <span class="w-1.5 h-1.5 bg-[#ff4655] rounded-full animate-ping"></span>
+                        FINAL INITIATION // SEASON 2026
+                    </div>
+                    <h2 class="font-clash text-4xl sm:text-6xl md:text-7xl tracking-tight">DEFY THE <span class="text-[#ff4655] inline-block">LIMITS.</span></h2>
+                    <p class="font-tactical text-xs sm:text-sm md:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed px-4 tracking-wide">Lock in with 1,200+ radiant developers, security architects, and cloud engineers on campus. Build real tech, unlock GCP credentials, and dominate regional hackathons.</p>
+                    
+                    <div class="pt-2">
+                        <button type="button" data-open-modal="join-modal" id="final-join-btn" class="val-btn-polygon magnetic-btn group relative inline-flex items-center gap-3 px-10 sm:px-14 py-4 sm:py-5 bg-[#ff4655] text-white text-xs sm:text-sm font-bold uppercase tracking-[0.25em] font-tactical overflow-hidden transition-all hover:bg-[#fa4454] cursor-pointer shadow-[0_0_35px_rgba(255,70,85,0.4)] hover:shadow-[0_0_55px_rgba(255,70,85,0.7)]">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <iconify-icon icon="lucide:crosshair" class="text-base"></iconify-icon>
+                                DEPLOY TO SQUAD // JOIN CHAPTER
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-center gap-4 text-[10px] font-tactical text-[#8b978f] uppercase tracking-widest pt-4">
+                        <span>● SERVER AP-SOUTH-1</span>
+                        <span>•</span>
+                        <span>PING 8ms</span>
+                        <span>•</span>
+                        <span>ENCRYPTION AES-256</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer (Tactical Dark) -->
+        <footer class="bg-[#070b0e] text-slate-400 py-12 sm:py-16 px-6 sm:px-8 lg:px-12 border-t border-[#ff4655]/20">
+           <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12">
+                <div class="space-y-4 md:col-span-2">
+                    <div class="flex items-center gap-3">
+                        <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/f7f474c0-d292-49e8-a5de-bee25424b883/1791728304461-eb9daa2e/gdg_skncoe5_AvIfr71.webp" alt="GDG ITER Logo" class="h-8 sm:h-9 w-auto">
+                        <span class="font-clash text-xl text-white tracking-tight">GDG <span class="text-[#ff4655]">ITER</span></span>
+                        <span class="text-[9px] font-tactical px-2 py-0.5 bg-[#16212e] text-[#00f5d4] border border-[#00f5d4]/30 rounded">TACTICAL PROTOCOL</span>
+                    </div>
+                    <p class="text-xs sm:text-sm leading-relaxed text-slate-400 max-w-md font-tactical">Official Google Developer Groups chapter at Siksha 'O' Anusandhan (ITER), Bhubaneswar. Designed to empower radiant builders with high-impact cloud architectures, AI systems, and open engineering.</p>
+                    <p class="text-[10px] text-slate-500 font-tactical tracking-wider">© 2026 GDG ITER // VALORANT TACTICAL EDITION. ALL PROTOCOLS DEPLOYED.</p>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-tactical text-[11px] font-bold uppercase text-[#ff4655] tracking-[3px]">SECTOR INDEX</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm font-tactical">
+                        <li><a href="#hero" class="hover:text-white transition-colors">01 // COMMAND CENTER</a></li>
+                        <li><a href="#recruitment" class="hover:text-[#ff4655] transition-colors">02 // PROTOCOLS '26</a></li>
+                        <li><a href="#meets" class="hover:text-[#00f5d4] transition-colors">03 // BRIEFINGS &amp; OPS</a></li>
+                        <li><a href="#gallery" class="hover:text-[#ffc83b] transition-colors">04 // ARCHIVE INTEL</a></li>
+                        <li><a href="#achievements" class="hover:text-[#ff4655] transition-colors">05 // TIMELINE LOGS</a></li>
+                        <li><a href="#members" class="hover:text-[#00f5d4] transition-colors">06 // SQUAD ROSTER</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-tactical text-[11px] font-bold uppercase text-[#00f5d4] tracking-[3px]">COMM CHANNEL</h4>
+                    <p class="text-xs text-slate-400 font-tactical">Connect to active frequency for mission drops &amp; sprint dispatches.</p>
+                    <div class="flex gap-3 pt-1">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-[#121c27] border border-[#233142] flex items-center justify-center text-slate-300 hover:text-[#00f5d4] hover:border-[#00f5d4]/60 transition-colors text-base" aria-label="LinkedIn"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-[#121c27] border border-[#233142] flex items-center justify-center text-slate-300 hover:text-[#00f5d4] hover:border-[#00f5d4]/60 transition-colors text-base" aria-label="Twitter"><iconify-icon icon="lucide:twitter"></iconify-icon></a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-[#121c27] border border-[#233142] flex items-center justify-center text-slate-300 hover:text-[#ff4655] hover:border-[#ff4655]/60 transition-colors text-base" aria-label="GitHub"><iconify-icon icon="lucide:github"></iconify-icon></a>
+                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-[#121c27] border border-[#233142] flex items-center justify-center text-slate-300 hover:text-[#ff4655] hover:border-[#ff4655]/60 transition-colors text-base" aria-label="Discord"><iconify-icon icon="lucide:message-circle"></iconify-icon></a>
+                    </div>
+                </div>
+           </div>
+        </footer>
+    </div>
+
+    <!-- ==================== MODALS (VALORANT TACTICAL) ==================== -->
+
+    <!-- RSVP Modal -->
+    <div id="rsvp-modal" class="modal-container modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title">
+        <div class="modal-content val-card bg-[#121c27] text-[#ece8e1] w-full max-w-lg p-8 sm:p-10 border border-[#ff4655]/40 shadow-[0_0_50px_rgba(0,0,0,0.85)] space-y-6 relative">
+            <div class="flex items-center justify-between pb-3 border-b border-[#233142]">
+                <div>
+                    <span class="text-[9px] font-tactical font-bold uppercase tracking-[0.25em] text-[#ff4655] block mb-1">// MISSION ACCESS ENTRY</span>
+                    <h3 id="rsvp-modal-title" class="font-clash text-2xl text-white">RESERVE OPERATOR SLOT</h3>
+                </div>
+                <button type="button" class="modal-close-btn p-2 text-slate-400 hover:text-[#ff4655] rounded-lg hover:bg-[#16212e] transition-colors cursor-pointer" aria-label="Close modal">
+                    <iconify-icon icon="lucide:x" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+            <div class="p-3.5 bg-[#0b1218] border border-[#00f5d4]/40 text-xs text-[#ece8e1] font-tactical flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#00f5d4] animate-ping"></span>
+                <span>TARGET BRIEFING: <span id="rsvp-event-display" class="font-bold text-[#00f5d4]">Selected Event</span></span>
+            </div>
+            <form id="rsvp-form" class="space-y-4">
+                <input type="hidden" id="rsvp-event-name" name="event_name" value="">
+                <div>
+                    <label for="rsvp-name" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">OPERATOR FULL NAME</label>
+                    <input type="text" id="rsvp-name" required placeholder="e.g. Priyanshu Das" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="rsvp-email" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">CAMPUS COMM EMAIL</label>
+                    <input type="email" id="rsvp-email" required placeholder="name@soa.ac.in" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label for="rsvp-reg" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">REG. ID</label>
+                        <input type="text" id="rsvp-reg" required placeholder="224101..." class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                    </div>
+                    <div>
+                        <label for="rsvp-year" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">CLASS DIVISION</label>
+                        <select id="rsvp-year" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                            <option>1st Year (CSE/IT)</option>
+                            <option>2nd Year (CSE/IT)</option>
+                            <option>3rd Year (CSE/IT)</option>
+                            <option>4th Year (CSE/IT)</option>
+                            <option>Other Department</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="val-btn-polygon w-full py-4 bg-[#ff4655] text-white text-xs font-bold uppercase tracking-[0.2em] font-tactical hover:bg-[#fa4454] transition-all shadow-lg shadow-red-500/30 cursor-pointer">
+                    CONFIRM SEAT DISPATCH
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Apply Modal -->
+    <div id="apply-modal" class="modal-container modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="apply-modal-title">
+        <div class="modal-content val-card bg-[#121c27] text-[#ece8e1] w-full max-w-lg p-8 sm:p-10 border border-[#ff4655]/40 shadow-[0_0_50px_rgba(0,0,0,0.85)] space-y-6 relative">
+            <div class="flex items-center justify-between pb-3 border-b border-[#233142]">
+                <div>
+                    <span class="text-[9px] font-tactical font-bold uppercase tracking-[0.25em] text-[#00f5d4] block mb-1">// INITIATION PROTOCOL '26</span>
+                    <h3 id="apply-modal-title" class="font-clash text-2xl text-white">CORE OPERATOR APPLICATION</h3>
+                </div>
+                <button type="button" class="modal-close-btn p-2 text-slate-400 hover:text-[#ff4655] rounded-lg hover:bg-[#16212e] transition-colors cursor-pointer" aria-label="Close modal">
+                    <iconify-icon icon="lucide:x" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+            <form id="apply-form" class="space-y-4">
+                <div>
+                    <label for="apply-name" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">OPERATOR FULL NAME</label>
+                    <input type="text" id="apply-name" required placeholder="Agent Identity" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="apply-email" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">DIRECT COMMS EMAIL</label>
+                    <input type="email" id="apply-email" required placeholder="you@soa.ac.in" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="apply-track" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">DESIRED COMBAT ROLE</label>
+                    <select id="apply-track" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                        <option>Duelist // Full Stack Web Development (React / Next.js / Go)</option>
+                        <option>Controller // Cloud Infrastructure &amp; GCP DevOps</option>
+                        <option>Initiator // AI Engineering &amp; Gemini Multimodal</option>
+                        <option>Sentinel // UI/UX Architecture &amp; Interaction Systems</option>
+                        <option>Tactical Ops // Event Management &amp; Community Coordination</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="apply-github" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">GITHUB INTEL / PORTFOLIO</label>
+                    <input type="url" id="apply-github" placeholder="https://github.com/operator-callsign" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="apply-notes" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">MISSION STATEMENT // WHY CHOSEN?</label>
+                    <textarea id="apply-notes" rows="3" placeholder="Briefly state your core technical strengths and drive..." class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical"></textarea>
+                </div>
+                <button type="submit" class="val-btn-polygon w-full py-4 bg-[#ff4655] text-white text-xs font-bold uppercase tracking-[0.2em] font-tactical hover:bg-[#fa4454] transition-all shadow-lg shadow-red-500/30 cursor-pointer">
+                    SUBMIT CLASSIFIED DOSSIER
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hackathon Modal -->
+    <div id="hackathon-modal" class="modal-container modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="hackathon-modal-title">
+        <div class="modal-content val-card bg-[#121c27] text-white w-full max-w-lg p-8 sm:p-10 border border-[#ff4655]/40 shadow-[0_0_50px_rgba(0,0,0,0.85)] space-y-6 relative">
+            <div class="flex items-center justify-between pb-3 border-b border-[#233142]">
+                <div>
+                    <span class="text-[9px] font-tactical font-bold uppercase tracking-[0.25em] text-[#ff4655] block mb-1">// TOURNAMENT ENTRY</span>
+                    <h3 id="hackathon-modal-title" class="font-clash text-2xl text-white">ARENA SQUAD REGISTRATION</h3>
+                </div>
+                <button type="button" class="modal-close-btn p-2 text-slate-400 hover:text-[#ff4655] rounded-lg hover:bg-[#16212e] transition-colors cursor-pointer" aria-label="Close modal">
+                    <iconify-icon icon="lucide:x" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+            <form id="hackathon-form" class="space-y-4">
+                <div>
+                    <label for="hack-team-name" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">TACTICAL SQUAD NAME</label>
+                    <input type="text" id="hack-team-name" required placeholder="e.g. RadianiteOps" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="hack-lead-name" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">SQUAD IGL (LEADER NAME)</label>
+                    <input type="text" id="hack-lead-name" required placeholder="IGL Call Name" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="hack-lead-email" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">IGL COMM FREQUENCY (EMAIL)</label>
+                    <input type="email" id="hack-lead-email" required placeholder="igl@soa.ac.in" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="hack-team-size" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">ROSTER CAPACITY</label>
+                    <select id="hack-team-size" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                        <option>2 Operators</option>
+                        <option>3 Operators</option>
+                        <option>4 Operators (Full Competitive Squad)</option>
+                    </select>
+                </div>
+                <button type="submit" class="val-btn-polygon w-full py-4 bg-[#ff4655] text-white text-xs font-bold uppercase tracking-[0.2em] font-tactical hover:bg-[#fa4454] transition-all shadow-lg shadow-red-500/30 cursor-pointer">
+                    LOCK SQUAD INTO ARENA
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Join Chapter Modal -->
+    <div id="join-modal" class="modal-container modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="join-modal-title">
+        <div class="modal-content val-card bg-[#121c27] text-[#ece8e1] w-full max-w-lg p-8 sm:p-10 border border-[#ff4655]/40 shadow-[0_0_50px_rgba(0,0,0,0.85)] space-y-6 relative">
+            <div class="flex items-center justify-between pb-3 border-b border-[#233142]">
+                <div>
+                    <span class="text-[9px] font-tactical font-bold uppercase tracking-[0.25em] text-[#ff4655] block mb-1">// GLOBAL ONBOARDING</span>
+                    <h3 id="join-modal-title" class="font-clash text-2xl text-white">JOIN GDG ITER SECTOR</h3>
+                </div>
+                <button type="button" class="modal-close-btn p-2 text-slate-400 hover:text-[#ff4655] rounded-lg hover:bg-[#16212e] transition-colors cursor-pointer" aria-label="Close modal">
+                    <iconify-icon icon="lucide:x" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+            <p class="text-xs text-slate-400 font-tactical leading-relaxed">Unlock access to Google Cloud credits, project laboratories, weekend dev skirmishes, and private discord tactical channels.</p>
+            <form id="join-form" class="space-y-4">
+                <div>
+                    <label for="join-name" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">CALLSIGN / FULL NAME</label>
+                    <input type="text" id="join-name" required placeholder="Agent Identity" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="join-email" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">COMMS ADDRESS</label>
+                    <input type="email" id="join-email" required placeholder="name@soa.ac.in" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                </div>
+                <div>
+                    <label for="join-interests" class="block text-[11px] font-tactical font-bold text-slate-300 uppercase tracking-wider mb-2">PRIMARY SPECIALTY</label>
+                    <select id="join-interests" class="w-full px-4 py-3 bg-[#0b1218] border border-[#233142] text-sm text-white focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-all font-tactical">
+                        <option>Full Stack &amp; Web Systems</option>
+                        <option>AI / Machine Learning &amp; Gemini Agents</option>
+                        <option>Cloud Infrastructure &amp; DevOps</option>
+                        <option>Mobile Dev (Android / Flutter 3.X)</option>
+                        <option>Cybersecurity &amp; Open Source Core</option>
+                    </select>
+                </div>
+                <button type="submit" class="val-btn-polygon w-full py-4 bg-[#ff4655] text-white text-xs font-bold uppercase tracking-[0.2em] font-tactical hover:bg-[#fa4454] transition-all shadow-lg shadow-red-500/30 cursor-pointer">
+                    EXECUTE SQUAD ENLISTMENT
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Directory Modal -->
+    <div id="directory-modal" class="modal-container modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="directory-modal-title">
+        <div class="modal-content val-card bg-[#121c27] text-[#ece8e1] w-full max-w-2xl max-h-[85vh] overflow-y-auto p-8 sm:p-10 border border-[#ff4655]/40 shadow-[0_0_50px_rgba(0,0,0,0.85)] space-y-6 relative">
+            <div class="flex items-center justify-between pb-4 border-b border-[#233142]">
+                <div>
+                    <span class="text-[9px] font-tactical font-bold uppercase tracking-[0.25em] text-[#00f5d4] block mb-1">// CLASSIFIED ROSTER</span>
+                    <h3 id="directory-modal-title" class="font-clash text-2xl text-white">OPERATIONAL AGENT DIRECTORY</h3>
+                </div>
+                <button type="button" class="modal-close-btn p-2 text-slate-400 hover:text-[#ff4655] rounded-lg hover:bg-[#16212e] transition-colors cursor-pointer" aria-label="Close modal">
+                    <iconify-icon icon="lucide:x" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+            <div class="space-y-3 font-tactical">
+                <div class="p-4 bg-[#0b1218] border border-[#233142] hover:border-[#ff4655]/60 transition-colors flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kunal" class="w-12 h-12 rounded-full border border-[#ff4655]/40" alt="Kunal">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Kunal Singhal</h4>
+                            <p class="text-xs text-[#ff4655] font-semibold uppercase tracking-wider">[ CONTROLLER // CHAPTER LEAD ]</p>
+                        </div>
+                    </div>
+                    <span class="text-xs px-3 py-1 bg-[#16212e] border border-[#ff4655]/30 text-[#ece8e1] font-bold">COMMAND</span>
+                </div>
+                <div class="p-4 bg-[#0b1218] border border-[#233142] hover:border-[#ff4655]/60 transition-colors flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aarav" class="w-12 h-12 rounded-full border border-[#00f5d4]/40" alt="Aarav">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Aarav Sharma</h4>
+                            <p class="text-xs text-[#00f5d4] font-semibold uppercase tracking-wider">[ DUELIST // FULL STACK ]</p>
+                        </div>
+                    </div>
+                    <span class="text-xs px-3 py-1 bg-[#16212e] border border-[#00f5d4]/30 text-[#00f5d4] font-bold">FRONT-LINE</span>
+                </div>
+                <div class="p-4 bg-[#0b1218] border border-[#233142] hover:border-[#ff4655]/60 transition-colors flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Tara" class="w-12 h-12 rounded-full border border-[#00f5d4]/40" alt="Tara">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Tara D'Souza</h4>
+                            <p class="text-xs text-[#00f5d4] font-semibold uppercase tracking-wider">[ SENTINEL // UI/UX DESIGN ]</p>
+                        </div>
+                    </div>
+                    <span class="text-xs px-3 py-1 bg-[#16212e] border border-[#00f5d4]/30 text-[#00f5d4] font-bold">INTERFACE</span>
+                </div>
+                <div class="p-4 bg-[#0b1218] border border-[#233142] hover:border-[#ff4655]/60 transition-colors flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Arjun" class="w-12 h-12 rounded-full border border-[#ffc83b]/40" alt="Arjun">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Arjun Reddy</h4>
+                            <p class="text-xs text-[#ffc83b] font-semibold uppercase tracking-wider">[ INITIATOR // MEDIA &amp; PR ]</p>
+                        </div>
+                    </div>
+                    <span class="text-xs px-3 py-1 bg-[#16212e] border border-[#ffc83b]/30 text-[#ffc83b] font-bold">INTELLIGENCE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Logic Script -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Rajdhani:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    /* Valorant Tactical Palette */
+    --val-red: #ff4655;
+    --val-red-hover: #fa4454;
+    --val-cyan: #00f5d4;
+    --val-cyan-glow: rgba(0, 245, 212, 0.4);
+    --val-gold: #ffc83b;
+    --val-dark: #0f1923;
+    --val-dark-deeper: #080c10;
+    --val-surface: #16212e;
+    --val-surface-light: #1f2e3d;
+    --val-white: #ece8e1;
+    --val-muted: #8b978f;
+    --val-border: rgba(236, 232, 225, 0.12);
+    --val-border-red: rgba(255, 70, 85, 0.5);
+
+    /* Google Legacy Reference */
+    --google-blue: #00f5d4;
+    --google-red: #ff4655;
+    --google-yellow: #ffc83b;
+    --google-green: #34A853;
+    --bg-main: #0f1923;
+    --card-border: rgba(236, 232, 225, 0.12);
+    --glass-bg: rgba(22, 33, 46, 0.85);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Rajdhani', 'Satoshi', sans-serif;
+    background-color: var(--val-dark);
+    color: var(--val-white);
+    margin: 0;
+    overflow-x: hidden;
+    letter-spacing: 0.02em;
+}
+
+/* Typography Presets */
+.font-clash {
+    font-family: 'Clash Display', 'Rajdhani', sans-serif;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+}
+
+.font-valorant {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.font-tactical {
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+}
+
+.hero-text {
+    font-size: clamp(3rem, 8vw, 6.25rem);
+    text-transform: uppercase;
+}
+
+/* --- TACTICAL VALORANT ANIMATIONS --- */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(1.5deg);
+    }
+}
+
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(-1.5deg);
+    }
+}
+
+@keyframes floatReverse {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(12px) rotate(1deg);
+    }
+}
+
+@keyframes slideUpReveal {
+    from {
+        opacity: 0;
+        transform: translateY(50px) skewY(2deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) skewY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 70, 85, 0.25);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(255, 70, 85, 0.65);
+    }
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes radarWave {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.9;
+        border-color: #ff4655;
+    }
+    50% {
+        border-color: #00f5d4;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+        border-color: #ff4655;
+    }
+}
+
+@keyframes shineSweep {
+    0% {
+        transform: translateX(-150%) skewX(-20deg);
+    }
+    100% {
+        transform: translateX(250%) skewX(-20deg);
+    }
+}
+
+@keyframes valGlitch {
+    0% {
+        transform: translate(0);
+        text-shadow: -2px 0 #ff4655, 2px 0 #00f5d4;
+    }
+    20% {
+        transform: translate(-3px, 1px);
+        text-shadow: 2px -1px #ff4655, -2px 1px #00f5d4;
+    }
+    40% {
+        transform: translate(3px, -1px);
+        text-shadow: -2px 1px #ff4655, 2px -1px #00f5d4;
+    }
+    60% {
+        transform: translate(-1px, 2px);
+        text-shadow: 1px -2px #ff4655, -1px 2px #00f5d4;
+    }
+    80% {
+        transform: translate(1px, -2px);
+        text-shadow: -1px 2px #ff4655, 1px -2px #00f5d4;
+    }
+    100% {
+        transform: translate(0);
+        text-shadow: -2px 0 #ff4655, 2px 0 #00f5d4;
+    }
+}
+
+@keyframes valScanline {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(1000%);
+    }
+}
+
+@keyframes reticlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Utilities */
+.animate-float {
+    animation: float 6s infinite ease-in-out;
+}
+
+.animate-float-slow {
+    animation: floatSlow 7s infinite ease-in-out;
+}
+
+.animate-float-reverse {
+    animation: floatReverse 6.5s infinite ease-in-out;
+}
+
+.animate-shimmer {
+    animation: shimmer 2.4s infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulseGlow 3s infinite;
+}
+
+/* Glitch Title Hover */
+.val-glitch:hover {
+    animation: valGlitch 0.4s ease infinite alternate;
+}
+
+/* Gradient animated text */
+.text-gradient-animated {
+    background: linear-gradient(135deg, #ff4655 0%, #ff8e9b 30%, #00f5d4 70%, #ffc83b 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 6s ease infinite;
+}
+
+/* Infinite Tactical Marquee */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.marquee-track {
+    display: inline-flex;
+    width: max-content;
+    animation: marquee 26s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+/* Tactical Background Grid */
+.tactical-grid-bg {
+    background-image: 
+        linear-gradient(rgba(236, 232, 225, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 232, 225, 0.04) 1px, transparent 1px);
+    background-size: 36px 36px;
+}
+
+.tactical-dots-bg {
+    background-image: radial-gradient(rgba(236, 232, 225, 0.08) 1px, transparent 0);
+    background-size: 20px 20px;
+}
+
+/* Floating interactive badges in hero */
+.floating-chip {
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(22, 33, 46, 0.9);
+    border: 1px solid rgba(236, 232, 225, 0.15);
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.floating-chip:hover {
+    transform: translateY(-4px) scale(1.05) !important;
+    border-color: #ff4655;
+    box-shadow: 0 10px 25px -5px rgba(255, 70, 85, 0.4);
+}
+
+/* Top Scroll progress bar (Valorant Crimson & Radianite Cyan) */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, #ff4655, #ff8e9b, #00f5d4, #ffc83b);
+    z-index: 100;
+    width: 0%;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 1px 8px rgba(255, 70, 85, 0.6);
+}
+
+/* Ambient Cursor Glow (Radianite Core Aura) */
+#ambient-glow {
+    position: fixed;
+    width: 360px;
+    height: 360px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(255, 70, 85, 0.09) 0%, rgba(0, 245, 212, 0.05) 45%, transparent 70%);
+    pointer-events: none;
+    z-index: 40;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease;
+    filter: blur(28px);
+}
+
+/* Canvas Particle Overlay in Hero */
+#hero-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.65;
+}
+
+/* Valorant Custom Crosshair Reticle */
+#val-crosshair {
+    position: fixed;
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                height 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                filter 0.22s ease;
+}
+
+#val-crosshair .crosshair-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: #ff4655;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 6px #ff4655;
+}
+
+#val-crosshair .crosshair-line {
+    position: absolute;
+    background: rgba(236, 232, 225, 0.7);
+    transition: all 0.2s ease;
+}
+
+#val-crosshair .line-top {
+    top: 0;
+    left: 50%;
+    width: 1.5px;
+    height: 8px;
+    transform: translateX(-50%);
+}
+
+#val-crosshair .line-bottom {
+    bottom: 0;
+    left: 50%;
+    width: 1.5px;
+    height: 8px;
+    transform: translateX(-50%);
+}
+
+#val-crosshair .line-left {
+    top: 50%;
+    left: 0;
+    width: 8px;
+    height: 1.5px;
+    transform: translateY(-50%);
+}
+
+#val-crosshair .line-right {
+    top: 50%;
+    right: 0;
+    width: 8px;
+    height: 1.5px;
+    transform: translateY(-50%);
+}
+
+/* Locked state on interactive elements */
+#val-crosshair.locked {
+    width: 44px;
+    height: 44px;
+    filter: drop-shadow(0 0 10px #ff4655);
+}
+
+#val-crosshair.locked .crosshair-line {
+    background: #ff4655;
+    box-shadow: 0 0 6px #ff4655;
+}
+
+#val-crosshair.locked .crosshair-center {
+    background: #00f5d4;
+    box-shadow: 0 0 8px #00f5d4;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Magnetic Button Motion */
+.magnetic-btn {
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* Spotlight card hover illumination */
+.spotlight-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.spotlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(255, 70, 85, 0.14), transparent 75%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.spotlight-card:hover::before {
+    opacity: 1;
+}
+
+/* Radar pulse ripple for timeline nodes */
+.radar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 9999px;
+    border: 2px solid #ff4655;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.timeline-node.active .radar-ring {
+    animation: radarWave 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+/* Button shine sweep */
+.btn-shine-sweep {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shine-sweep::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 70%
+    );
+    transform: translateX(-150%) skewX(-20deg);
+    pointer-events: none;
+    transition: transform 0.6s ease;
+}
+
+.btn-shine-sweep:hover::after {
+    transform: translateX(150%) skewX(-20deg);
+}
+
+/* Reveal classes */
+.reveal-hidden {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1), transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.parallax-blob {
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+}
+
+/* Navigation underline interaction */
+.nav-underline {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 50%;
+    background-color: var(--val-red);
+    transition: width 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: translateX(-50%);
+}
+
+.nav-underline:hover::after,
+.nav-underline.active::after {
+    width: 100%;
+}
+
+/* Valorant Chamfered Cards */
+.val-card {
+    background: var(--val-surface);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--val-border);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+}
+
+.val-card:hover {
+    border-color: rgba(255, 70, 85, 0.55);
+    box-shadow: 0 14px 35px -10px rgba(255, 70, 85, 0.3), 0 0 25px rgba(0, 245, 212, 0.12);
+    transform: translateY(-6px);
+}
+
+/* Glass card styling (dark tactical) */
+.glass-card {
+    background: rgba(22, 33, 46, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--val-border);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 70, 85, 0.6);
+    box-shadow: 0 16px 36px -10px rgba(255, 70, 85, 0.35);
+    transform: translateY(-6px);
+}
+
+.hover-lift {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hover-lift:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Gallery overlay transitions */
+.gallery-overlay {
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.group:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+/* Member avatar glow */
+.member-glow {
+    filter: drop-shadow(0 0 0px var(--val-red));
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.group:hover .member-glow {
+    filter: drop-shadow(0 0 22px rgba(255, 70, 85, 0.6));
+}
+
+/* Timeline vertical line */
+.timeline-line-active {
+    transition: height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Valorant Polygon Buttons */
+.val-btn-polygon {
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.val-btn-polygon:hover {
+    box-shadow: 0 0 25px rgba(255, 70, 85, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Custom Tactical Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080c10;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1f2e3d;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff4655;
+}
+
+/* Modals (Valorant HUD Style) */
+.modal-backdrop {
+    background-color: rgba(8, 12, 16, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: #121c27 !important;
+    border: 1px solid rgba(255, 70, 85, 0.4) !important;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 70, 85, 0.25) !important;
+    animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Toast notifications (Valorant HUD Style) */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    background: #121c27;
+    color: #ece8e1;
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 70, 85, 0.3);
+    border: 1px solid rgba(255, 70, 85, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Mobile Drawer (Valorant Dark Tactical) */
+.mobile-drawer {
+    background: #0f1923 !important;
+    border-left: 1px solid rgba(255, 70, 85, 0.3) !important;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-drawer.open {
+    transform: translateX(0);
+}
