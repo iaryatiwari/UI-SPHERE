@@ -1,4 +1,4 @@
-# UI SPHERE — GDG ITER | Premium Animated Hub
+# UI SPHERE — GDG ITER |
 
 A modern, high-performance community web portal designed for **Google Developer Groups (GDG) ITER**, Siksha 'O' Anusandhan, Bhubaneswar.
 
